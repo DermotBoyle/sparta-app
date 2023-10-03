@@ -7,12 +7,9 @@ export async function middleware(req: NextRequest) {
 
 	let authCookie = req.cookies.get("sparta-auth-session");
 
-	console.log("MIDDLEWARE RUNNING");
-
 	if (!authCookie && pathname !== '/signin') {
 		return NextResponse.redirect(origin + "/signin");
 	}
-
 
 	return NextResponse.next();
 }
