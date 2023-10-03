@@ -21,8 +21,16 @@ const Card = () => {
 		resolver: zodResolver(SignInValidationSchema),
 	})
 
-	const onSubmit = (data: ValidationSchema) => {
-		console.log(data)
+	const onSubmit = async (data: ValidationSchema) => {
+		const res = await fetch('/api/auth/signin', {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		})
+
+		console.log(res, 'res')
 	}
 
 	return (
