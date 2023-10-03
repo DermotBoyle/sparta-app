@@ -8,6 +8,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --padding-small: 8px;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -38,6 +39,7 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+  --button-border: 2px solid white;
 }
 
 @media (prefers-color-scheme: dark) {

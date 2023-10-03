@@ -1,0 +1,17 @@
+.cardContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 30vh;
+	width: 30vw;
+	border-color: var(--card-border-rgb);
+	border-radius: var(--border-radius);
+	border-style: solid;
+	border-width: 2px;
+}
+
+.formContainer {
+	display: flex;
+	flex-direction: column;
+}
