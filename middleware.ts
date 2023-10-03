@@ -3,12 +3,20 @@ import { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
 
+	const { origin, pathname } = req.nextUrl;
+
 	let authCookie = req.cookies.get("sparta-auth-session");
 
-	if (!authCookie) {
-		return NextResponse.redirect("/signin");
+	console.log("MIDDLEWARE RUNNING");
+
+	if (!authCookie && pathname !== '/signin') {
+		return NextResponse.redirect(origin + "/signin");
 	}
 
 
 	return NextResponse.next();
 }
+
+export const config = {
+	matcher: "/",
+};
