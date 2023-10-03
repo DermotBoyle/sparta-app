@@ -1,4 +1,40 @@
 .singleClickButtonBase {
-	border: var(--button-border);
+	border-radius: var(--border-radius);
 	padding: var(--padding-small);
+	height: 3rem;
+}
+
+.primaryButton {
+	background-color: var(--primary-button-background);
+	color: var(--primary-button-text);
+	border: var(--button-border);
+	cursor: pointer;
+	transition: 0.5s;
+
+	&:hover {
+		background-color: white;
+		color: black;
+	}
+}
+
+.secondaryButton {
+	background-color: var(--secondary-color);
+	color: var(--secondary-text-color);
+}
+
+.tertiaryButton {
+	background-color: var(--tertiary-color);
+	color: var(--tertiary-text-color);
+}
+
+.sizeSm {
+	width: 30%;
+}
+
+.sizeMd {
+	width: 50%;
+}
+
+.sizeLg {
+	width: 90%;
 }
