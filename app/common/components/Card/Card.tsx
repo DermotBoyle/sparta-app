@@ -1,13 +1,11 @@
 'use client'
 import React from 'react'
 import Style from './Card.module.scss'
-import SingleClickButton from '../SingleClickButton'
+import SingleClickButton from '../SingleClickButton/SingleClickButton'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-
-type SignInError = 'Please provide a valid email' | 'Please provide a valid password'
 
 const SignInValidationSchema = z.object({
 	email: z.string().email({ message: 'Please provide a valid email' }),
@@ -33,7 +31,7 @@ const Card = () => {
 		})
 
 		if (res.status === 200) {
-			router.refresh()
+			router.replace('/')
 		}
 	}
 

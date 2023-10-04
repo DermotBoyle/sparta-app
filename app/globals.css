@@ -19,8 +19,6 @@
 
   --warning-color: #ff0000;
 
-  --caption: 0.75rem;
-
   --padding-xs: 4px;
   --padding-sm: 8px;
   --padding-md: 16px;
@@ -32,6 +30,11 @@
   --margin-md: 16px;
   --margin-lg: 24px;
   --margin-xl: 32px;
+
+  --font-sm: 1rem;
+  --font-md: 1.2rem;
+  --caption: 0.75rem;
+
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,

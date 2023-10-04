@@ -17,3 +17,19 @@
 .title {
   padding-bottom: var(--padding-md);
 }
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding-md);
+  height: 6rem;
+}
+
+.mainImage {
+  height: 6rem;
+  left: 1rem;
+  top: 0.5rem;
+  padding-right: 3rem;
+}

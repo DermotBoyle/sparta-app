@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { todoSlice } from "./actions/addTodoSlice";
 
 export const store = configureStore({
-	reducer: {},
+	reducer: {
+		todos: todoSlice.reducer,
+	},
 	devTools: process.env.NODE_ENV !== "production",
 });
 

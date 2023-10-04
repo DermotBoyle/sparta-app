@@ -1,0 +1,40 @@
+.todoFormContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+	width: 60vw;
+}
+
+%todoInputCommonProps {
+	border: var(--button-border);
+	border-radius: var(--border-radius);
+	padding: var(--padding-small);
+	width: 70%;
+	resize: none;
+}
+
+.todoInput {
+	@extend %todoInputCommonProps;
+	height: 3rem;
+}
+
+.todoTextArea {
+	@extend %todoInputCommonProps;
+	height: 10rem;
+	max-width: 70%;
+}
+
+.error {
+	color: red;
+	font-size: var(--caption);
+	margin-top: 0.5rem;
+}
+
+.label {
+	margin-top: 1rem;
+}
+
+.linkModal {
+	width: 100%;
+}

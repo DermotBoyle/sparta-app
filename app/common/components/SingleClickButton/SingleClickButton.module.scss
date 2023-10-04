@@ -5,11 +5,8 @@
 
 	&:disabled {
 		opacity: 0.5;
-
-		:hover{
-			cursor: not-allowed;
-			transition: none;
-		}
+		cursor: not-allowed;
+		transition: none;
 	}
 }
 
@@ -33,12 +30,20 @@
 }
 
 .tertiaryButton {
-	background-color: var(--tertiary-color);
 	color: var(--tertiary-text-color);
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+	font-size: var(--font-sm);
+
+	&:hover {
+		color: var(--warning-color);
+		text-decoration: underline;
+	}
 }
 
 .sizeSm {
-	width: 30%;
+	width: 10%;
 }
 
 .sizeMd {
