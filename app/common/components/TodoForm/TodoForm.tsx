@@ -29,8 +29,10 @@ const TodoFormModal = () => {
 	useEffect(() => {
 		if (showModal) {
 			modalRef.current?.showModal()
+			document.documentElement.style.overflowY = 'hidden'
 		} else {
 			modalRef.current?.close()
+			document.documentElement.style.overflowY = 'scroll'
 			router.push('/')
 		}
 	}, [ showModal ])
@@ -41,12 +43,13 @@ const TodoFormModal = () => {
 
 	const handleClose = () => {
 		modalRef.current?.close()
+		document.documentElement.style.overflowY = 'scroll'
 		router.push('/')
 	}
 
 
 	const dialog = showModal
-		? <dialog ref={modalRef}>
+		? <dialog className={Styles.todoFormModal} ref={modalRef}>
 			<div>
 				<h2 className={Styles.title}>Add todo</h2>
 				<button className={Styles.closeButton} onClick={() => handleClose()}>x</button>
