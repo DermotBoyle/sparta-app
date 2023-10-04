@@ -5,6 +5,7 @@ import SingleClickButton from '../SingleClickButton'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 
 type SignInError = 'Please provide a valid email' | 'Please provide a valid password'
 
@@ -20,6 +21,7 @@ const Card = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm<ValidationSchema>({
 		resolver: zodResolver(SignInValidationSchema),
 	})
+	const router = useRouter()
 
 	const onSubmit = async (data: ValidationSchema) => {
 		const res = await fetch('/api/auth/signin', {
@@ -30,7 +32,9 @@ const Card = () => {
 			}
 		})
 
-		console.log(res, 'res')
+		if (res.status === 200) {
+			router.refresh()
+		}
 	}
 
 	return (

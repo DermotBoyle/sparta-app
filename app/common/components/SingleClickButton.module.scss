@@ -2,6 +2,15 @@
 	border-radius: var(--border-radius);
 	padding: var(--padding-small);
 	height: 3rem;
+
+	&:disabled {
+		opacity: 0.5;
+
+		:hover{
+			cursor: not-allowed;
+			transition: none;
+		}
+	}
 }
 
 .primaryButton {
@@ -20,6 +29,7 @@
 .secondaryButton {
 	background-color: var(--secondary-color);
 	color: var(--secondary-text-color);
+	cursor: pointer;
 }
 
 .tertiaryButton {

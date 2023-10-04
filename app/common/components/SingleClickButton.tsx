@@ -31,8 +31,14 @@ const SingleClickButton = ({ onClick, label, disabled = false, size = 'md', type
 
 	const [ isBlocking, setIsBlocking ] = useState(false)
 
+	const onClickHandler = async () => {
+		setIsBlocking(true)
+		await onClick()
+		setIsBlocking(false)
+	}
+
 	return (
-		<button onClick={onClick} className={btnClass} type={type} disabled={disabled || isBlocking}>{label}</button>
+		<button onClick={onClickHandler} className={btnClass} type={type} disabled={disabled || isBlocking}>{label}</button>
 	)
 }
 

@@ -1,21 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import cookie from 'cookie'
+import { NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 import auth from '@/app/auth-service/auth'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+	let response = NextResponse.json({ message: 'successfully signed in' }, { status: 200 })
 	const token = await auth()
-	res.statusCode = 200
-	res.json({ success: true })
-	res.setHeader(
-		'Set-Cookie',
-		cookie.serialize('sparta-auth-session', token.FAKE_JWT, {
-			httpOnly: true,
-			secure: process.env.NODE_ENV !== 'development',
-			maxAge: 60 * 60 * 24 * 7, // 1 week
-			sameSite: 'strict',
-			path: '/',
-		})
-	)
+	cookies().set({
+		name: 'sparta-auth-cookie',
+		value: token.FAKE_JWT,
+		httpOnly: true,
+		path: '/',
+		maxAge: 60 * 60 * 24 * 7 // 1 week
+	})
 
-	return res
+	return response
 }
