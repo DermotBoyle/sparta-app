@@ -3,6 +3,18 @@
 	margin: auto;
 	padding: var(--padding-lg);
 	border-radius: var(--border-radius);
+
+	::backdrop{
+		background: white;
+	}
+}
+
+.todoFormHeaderBar {
+	display: flex;
+	border-bottom: var(--button-border);
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: var(--padding-sm);
 }
 
 .todoFormContainer {
@@ -11,6 +23,7 @@
 	align-items: start;
 	justify-content: start;
 	width: 50vw;
+	padding-bottom: var(--padding-md);
 }
 
 %todoInputCommonProps {
@@ -19,6 +32,8 @@
 	padding: var(--padding-small);
 	width: 90%;
 	resize: none;
+	padding-left: var(--padding-sm);
+	padding-right: var(--padding-sm)
 }
 
 .todoInput {
@@ -30,6 +45,12 @@
 	@extend %todoInputCommonProps;
 	height: 10rem;
 	max-width: 90%;
+	padding-top: var(--padding-sm);
+}
+
+.todoCheckbox {
+	height: 2rem;
+	width: 2rem;
 }
 
 .error {
@@ -39,9 +60,25 @@
 }
 
 .label {
-	margin-top: 1rem;
+	padding-top: var(--padding-md);
+	padding-bottom: var(--padding-sm);
 }
 
 .linkModal {
 	width: 100%;
+}
+
+.closeButton {
+	padding: 0.5rem;
+	border: var(--button-border);
+	border-radius: var(--border-radius);
+	width: 2.5rem;
+	cursor: pointer;
+	background: transparent;
+	transition: 0.5s;
+
+	&:hover {
+		background-color: white;
+		color: black;
+	}
 }

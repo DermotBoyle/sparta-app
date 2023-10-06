@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Todo = {
-	id: number;
+	id: string;
 	title: string;
 	message: string;
 	completed: boolean;

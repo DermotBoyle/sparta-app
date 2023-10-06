@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import SingleClickButton from './common/components/SingleClickButton/SingleClickButton'
-import { useAppDispatch, useAppSelector } from './redux/hooks'
+import { useAppSelector } from './redux/hooks'
 import styles from './page.module.scss'
 import TodoFormModal from './common/components/TodoForm/TodoForm'
 
@@ -13,14 +13,13 @@ export default function Home({ searchParams }: HomePropsType) {
 
   const router = useRouter()
   const todos = useAppSelector(state => state.todos)
-  const dispatch = useAppDispatch()
 
   return (
     <main className={styles.main}>
       <div className={styles.mainContainer} >
+        <SingleClickButton style='primary' size='sm' label="Add todo" onClick={() => router.push('/?todoFormModal=true')} />
         <TodoFormModal />
       </div>
-      <SingleClickButton style='primary' label="Add todo" onClick={() => router.push('/?todoFormModal=true')} />
     </main>
   )
 }

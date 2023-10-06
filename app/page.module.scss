@@ -1,17 +1,12 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
   min-height: 100vh;
 }
 
 .mainContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding-left: var(--padding-lg);
+  padding-top: var(--padding-lg)
 }
 
 .title {

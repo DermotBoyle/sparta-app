@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
+import { useAppDispatch } from '@/app/redux/hooks'
+import { addTodo } from '@/app/redux/actions/addTodoSlice'
 
 const TodoValidationSchema = z.object({
 	title: z.string().min(3, { message: 'Please provide a valid title, min 3 characters' }),
@@ -25,6 +27,8 @@ const TodoFormModal = () => {
 	const modalRef = useRef<HTMLDialogElement | null>(null)
 	const showModal = searchParams.get('todoFormModal')
 	const router = useRouter()
+	const dispatch = useAppDispatch()
+
 
 	useEffect(() => {
 		if (showModal) {
@@ -38,7 +42,7 @@ const TodoFormModal = () => {
 	}, [ showModal ])
 
 	const onSubmit = async (data: ValidationSchema) => {
-		console.log(data)
+		dispatch(addTodo({ ...data, id: '123' }))
 	}
 
 	const handleClose = () => {
@@ -50,8 +54,8 @@ const TodoFormModal = () => {
 
 	const dialog = showModal
 		? <dialog className={Styles.todoFormModal} ref={modalRef}>
-			<div>
-				<h2 className={Styles.title}>Add todo</h2>
+			<div className={Styles.todoFormHeaderBar}>
+				<h2 className={Styles.title}>Mode: </h2>
 				<button className={Styles.closeButton} onClick={() => handleClose()}>x</button>
 			</div>
 			<div className={Styles.todoFormContainer}>
@@ -64,7 +68,7 @@ const TodoFormModal = () => {
 				{errors.message && <p className={Styles.error}>{errors.message.message}</p>}
 
 				<label className={Styles.label}>Mark as completed</label>
-				<input {...register("completed")} type="checkbox" />
+				<input className={Styles.todoCheckbox} {...register("completed")} type="checkbox" />
 			</div>
 			<Link className={Styles.linkModal} href='/'>
 				<SingleClickButton style='primary' label="Add todo" onClick={handleSubmit(onSubmit)} />
