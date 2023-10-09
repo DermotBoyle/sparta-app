@@ -19,7 +19,7 @@ type ValidationSchema = z.infer<typeof TodoValidationSchema>
 
 const TodoFormModal = () => {
 
-	const { register, handleSubmit, formState: { errors } } = useForm<ValidationSchema>({
+	const { register, handleSubmit, formState: { errors }, reset } = useForm<ValidationSchema>({
 		resolver: zodResolver(TodoValidationSchema),
 	})
 
@@ -35,17 +35,17 @@ const TodoFormModal = () => {
 			modalRef.current?.showModal()
 			document.documentElement.style.overflowY = 'hidden'
 		} else {
-			modalRef.current?.close()
-			document.documentElement.style.overflowY = 'scroll'
-			router.push('/')
+			handleClose()
 		}
 	}, [ showModal ])
 
 	const onSubmit = async (data: ValidationSchema) => {
-		dispatch(addTodo({ ...data, id: '123' }))
+		const uniqueId = Math.random().toString(36).substring(7)
+		dispatch(addTodo({ ...data, id: uniqueId }))
 	}
 
 	const handleClose = () => {
+		reset()
 		modalRef.current?.close()
 		document.documentElement.style.overflowY = 'scroll'
 		router.push('/')
@@ -66,7 +66,6 @@ const TodoFormModal = () => {
 				<label className={Styles.label}>Message</label>
 				<textarea className={Styles.todoTextArea} {...register("message")}></textarea>
 				{errors.message && <p className={Styles.error}>{errors.message.message}</p>}
-
 				<label className={Styles.label}>Mark as completed</label>
 				<input className={Styles.todoCheckbox} {...register("completed")} type="checkbox" />
 			</div>
