@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { addTodo } from '@/app/redux/actions/addTodoSlice'
 import { Todo } from '@/app/page'
@@ -27,15 +27,22 @@ type TodoFormModalPropsType = {
 const TodoFormModal = ({ currentTodo }: TodoFormModalPropsType) => {
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm<ValidationSchema>({
-		resolver: zodResolver(TodoValidationSchema),
-		defaultValues: currentTodo || undefined
+		resolver: zodResolver(TodoValidationSchema)
 	})
+
+	useEffect(() => {
+		register('title', { value: currentTodo?.title || '' })
+		register('message', { value: currentTodo?.message || '' })
+		register('completed', { value: currentTodo?.completed || false })
+	}, [ currentTodo ])
 
 	const searchParams = useSearchParams()
 	const modalRef = useRef<HTMLDialogElement | null>(null)
 	const showModal = searchParams.get('todoFormModal')
 	const router = useRouter()
 	const dispatch = useAppDispatch()
+
+	console.log('currentTodo', currentTodo)
 
 
 	useEffect(() => {
