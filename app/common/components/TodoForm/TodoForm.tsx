@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { addTodo } from '@/app/redux/actions/addTodoSlice'
+import { Todo } from '@/app/page'
 
 const TodoValidationSchema = z.object({
 	title: z.string().min(3, { message: 'Please provide a valid title, min 3 characters' }),
@@ -17,10 +18,17 @@ const TodoValidationSchema = z.object({
 
 type ValidationSchema = z.infer<typeof TodoValidationSchema>
 
-const TodoFormModal = () => {
+type MaybeTodo = Todo | null
+
+type TodoFormModalPropsType = {
+	currentTodo: MaybeTodo
+}
+
+const TodoFormModal = ({ currentTodo }: TodoFormModalPropsType) => {
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm<ValidationSchema>({
 		resolver: zodResolver(TodoValidationSchema),
+		defaultValues: currentTodo || undefined
 	})
 
 	const searchParams = useSearchParams()
